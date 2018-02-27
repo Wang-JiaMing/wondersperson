@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      lang="zh-CN">
+<head th:include="/include/cdHead">
+
+
+</head>
+<body>
+
+<form id="_scrf">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <input name="remarks" id="remarks" type="hidden"/>
+</form>
+
+<div th:include="/include/nav::inNav"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" align="center">
+
+            <button th:if="${isRegister==true}" id="userRegister" type="button" class="btn btn-primary"><span
+                    class="glyphicon glyphicon-screenshot" aria-hidden="true"></span>&nbsp;签到
+            </button>
+        </div>
+    </div>
+    <div id="calendar"></div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="addRm" tabindex="-1" role="dialog" aria-labelledby="addRm">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">添加签到备注</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control" id="rmk"  placeholder="如无备注可以不填写"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="rgbtn">确定</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+</body>
+<script>
+    $('#userRegister').click(function () {
+        $('#rmk').val('');
+        $('#addRm').modal('show');
+    });
+
+    $('#rgbtn').click(function () {
+        $('#remarks').val($('#rmk').val());
+        $.ajax({
+            type: "POST",
+            url: "/register/userRegister",
+            data: $('#_scrf').serialize(),
+            success: function (data) {
+                if(data.type) {
+                    reloadCalendar();
+                    alert("签到成功");
+                    $('#addRm').modal('hide');
+                    $('#userRegister').hide();
+                }
+
+            }
+        });
+    });
+
+
+    $(function () {
+        $.ajax({
+            type: "POST",
+            url: "/register/userRegisterList",
+            data: $('#_scrf').serialize(),
+            success: function (ajaxData) {
+                $('#calendar').calendar({
+                    dataSource:ajaxData,
+                    mouseOnDay: function(e) {
+                        if(e.events.length > 0) {
+                            var content = '';
+
+                            for(var i in e.events) {
+                                content += '<div class="event-tooltip-content">'
+                                    + '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>'
+                                    + '<div class="event-location">' + e.events[i].location + '</div>'
+                                    + '</div>';
+                            }
+
+                            $(e.element).popover({
+                                trigger: 'manual',
+                                container: 'body',
+                                html:true,
+                                content: content
+                            });
+
+                            $(e.element).popover('show');
+                        }
+                    },
+                    mouseOutDay: function(e) {
+                        if(e.events.length > 0) {
+                            $(e.element).popover('hide');
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+
+    function reloadCalendar(){
+        $.ajax({
+            type: "POST",
+            url: "/register/userRegisterList",
+            data: $('#_scrf').serialize(),
+            success: function (ajaxData) {
+                $('#calendar').calendar({
+                    dataSource:ajaxData,
+                    mouseOnDay: function(e) {
+                        if(e.events.length > 0) {
+                            var content = '';
+
+                            for(var i in e.events) {
+                                content += '<div class="event-tooltip-content">'
+                                    + '<div class="event-name" style="color:' + e.events[i].color + '">' + e.events[i].name + '</div>'
+                                    + '<div class="event-location">' + e.events[i].location + '</div>'
+                                    + '</div>';
+                            }
+
+                            $(e.element).popover({
+                                trigger: 'manual',
+                                container: 'body',
+                                html:true,
+                                content: content
+                            });
+
+                            $(e.element).popover('show');
+                        }
+                    },
+                    mouseOutDay: function(e) {
+                        if(e.events.length > 0) {
+                            $(e.element).popover('hide');
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+
+
+</script>
+</html>

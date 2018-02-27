@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      lang="zh-CN">
+<head th:include="/include/cdHead">
+
+
+</head>
+<body>
+
+<div th:include="/include/nav::inNav"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" align="center">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    任务计划
+                    <div align="right" style="float:right">
+                        <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                            <button type="button" class="btn btn-info" id="addPlanBtn">添加任务</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body pre-scrollable">
+                    <table class="table">
+                        <tr >
+                            <th width="100px">标签</th>
+                            <th width="200px">任务计划</th>
+                            <th>结束时间</th>
+                            <th>创建人</th>
+                            <th>涉及人</th>
+                            <th>优先级</th>
+                            <th>状态</th>
+                            <th>完成人</th>
+                            <th>完成时间</th>
+                            <th width="250px">操作</th>
+                        </tr>
+                        <tr th:each="pl:${planList}"
+                            th:class="${pl.styleClass=='2'}?danger:(${pl.styleClass=='1'}?info:active)">
+                            <td>
+                                <span class="label label-primary" th:text="${pl.planLable}">Primary</span>
+                            </td>
+                            <td th:text="${pl.planTitle}"></td>
+                            <td th:text="${pl.lastDate}"></td>
+                            <td th:text="${pl.createUser}"></td>
+                            <td th:text="${pl.personList}"></td>
+                            <td>
+                                <span th:if="${pl.planLevel=='0'}">低</span>
+                                <span th:if="${pl.planLevel=='1'}">中</span>
+                                <span th:if="${pl.planLevel=='2'}">高</span>
+                            </td>
+                            <td>
+                                <span th:if="${pl.status=='0'}">未完成</span>
+                                <span th:if="${pl.status=='1'}">已完成</span>
+                            </td>
+                            <td>
+                                <span th:text="${pl.overUserName}"></span>
+                            </td>
+                            <td>
+                                <span th:text="${pl.overDate}"></span>
+                            </td>
+                            <td>
+                                <button th:if="${pl.status=='0'}" class="btn btn-xs btn-default" type="button"
+                                        th:onclick="'javascript:overPlan(\''+${pl.id}+'\')'">结束任务
+                                </button>
+                                <button th:if="${pl.addUserButton=='0'}" type="button" class="btn btn-xs btn-info"
+                                        th:onclick="'javascript:addUser(\''+${pl.id}+'\')'">添加涉及人
+                                </button>
+                                <button th:if="${pl.addUserButton=='0'}" type="button" class="btn btn-xs btn-info"
+                                        th:onclick="'javascript:sendMail(\''+${pl.id}+'\')'">邮件通知
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<form id="_scrf">
+    <!-- Modal -->
+    <div class="modal fade bs-example-modal-lg" id="addPlanModel" tabindex="-1" role="dialog"
+         aria-labelledby="addPlanModel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel">添加计划 </h4>
+                </div>
+                <div class="modal-body pre-scrollable">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="sizing-addon2">任务描述<span style="color: red">*</span></span>
+                        <input type="text" class="form-control" id="planTitle" name="planTitle"
+                               aria-describedby="sizing-addon2"/>
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon">标签</span>
+                        <input type="text" class="form-control" name="planLable" aria-describedby="sizing-addon2"/>
+                    </div>
+                    <br/>
+                    <div class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd"
+                         data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                        <input class="form-control" size="20" type="text" name="lastDate" value="" readonly="readonly"
+                               placeholder="截止时间"/>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    <br/>
+                    <h5>任务等级<span style="color: red">*</span>&nbsp;&nbsp;
+                        <input type="radio" name="planLevel" value="0" checked="checked"/>
+                        低
+                        <input type="radio" name="planLevel" value="1"/>
+                        中
+                        <input type="radio" name="planLevel" value="2"/>
+                        高
+                    </h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="planSubbtn">确定</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+</form>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addPersonModel" tabindex="-1" role="dialog" aria-labelledby="addPersonModel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="addTitle">添加涉及人</h4>
+            </div>
+            <div class="modal-body pre-scrollable" id="mbody">
+                <table class="table">
+                    <tr>
+                        <th></th>
+                        <th>姓名</th>
+                        <th>工号</th>
+                        <th>邮箱</th>
+                    </tr>
+                    <tbody id="personListTable">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer" >
+                <button class="btn btn-xs btn-primary" type="button" th:onclick="'javascript:addUserAction()'">确定
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<form id="_scrfOther">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <input type="hidden" name="id" id="_scrfOther_id" value=""/>
+</form>
+
+<form id="_scrfPlanAddUser">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <input type="hidden" name="id" id="_scrfPlanAddUser_id" value=""/>
+    <input type="hidden" name="userid" id="_scrfPlanAddUser_userid" value=""/>
+</form>
+
+<form id="_scrfSendMail">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <input type="hidden" name="id" id="_scrfSendMail_id" value=""/>
+</form>
+</body>
+<script>
+
+    function sendMail(id){
+        $('#_scrfSendMail_id').val(id);
+        var res = confirm("确定发送邮件通知任务涉及人吗？");
+        if (res == true) {
+            $.ajax({
+                type: "POST",
+                url: "/plan/sendMail",
+                data: $('#_scrfSendMail').serialize(),
+                success: function (ajaxData) {
+                    if (ajaxData.type) {
+                        alert("发送成功");
+                    }
+                }
+            });
+        }
+    }
+
+    function addUserAction() {
+        var userid = "";
+        $(".userCheckBox:checked").each(function () {
+            userid += $(this).val() + ",";
+        });
+        $('#_scrfPlanAddUser_userid').val(userid);
+        $.ajax({
+            type: "POST",
+            url: "/plan/planAddUser",
+            data: $('#_scrfPlanAddUser').serialize(),
+            success: function (ajaxData) {
+                if (ajaxData.type) {
+                    alert("操作成功");
+                    window.location.reload();
+                }
+            }
+        });
+
+    }
+
+    function addUser(id) {
+        $('#_scrfPlanAddUser_id').val(id);
+        $('#_scrfOther_id').val(id);
+        $.ajax({
+            type: "POST",
+            url: "/plan/planUserList",
+            data: $('#_scrfOther').serialize(),
+            success: function (ajaxData) {
+                var appendHtml = "";
+                /* <![CDATA[ */
+                for (var i = 0; i < ajaxData.length; i++) {
+                    if (ajaxData[i].type == "1") {
+                        appendHtml += "<tr><th><input class=\"userCheckBox\" type=\"checkbox\" checked=\"checked\" value=\"" + ajaxData[i].id + "\"/></th><th>" + ajaxData[i].name + "</th><th>" + ajaxData[i].no + "</th><th>" + ajaxData[i].email + "</th></tr>";
+                    } else {
+                        appendHtml += "<tr><th><input class=\"userCheckBox\" type=\"checkbox\" value=\"" + ajaxData[i].id + "\"/></th><th>" + ajaxData[i].name + "</th><th>" + ajaxData[i].no + "</th><th>" + ajaxData[i].email + "</th></tr>";
+                    }
+                }
+                /* ]]> */
+                $('#personListTable').append(appendHtml);
+            }
+        });
+        $('#addPersonModel').modal('show');
+    }
+
+    function overPlan(id) {
+        if (id != "") {
+            $('#_scrfOther_id').val(id);
+            var res = confirm("确定完成任务记录么？");
+            if (res == true) {
+                $.ajax({
+                    type: "POST",
+                    url: "/plan/overPlan",
+                    data: $('#_scrfOther').serialize(),
+                    success: function (ajaxData) {
+                        if (ajaxData.type) {
+                            alert("操作成功");
+                            window.location.reload();
+                        }
+                    }
+                });
+            }
+        } else {
+            alert("id不能为空");
+        }
+    }
+
+    $(function () {
+        $('.form_date').datetimepicker({
+            language: '',
+            weekStart: 1,
+            todayBtn: 1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+    })
+
+    $('#addPlanBtn').click(function () {
+        $('#addPlanModel').modal('show');
+    });
+
+    $('#planSubbtn').click(function () {
+        if ($("input[name='planTitle']").val() != "") {
+            if ($("input[name='lastDate']").val() != "") {
+
+                $.ajax({
+                    type: "POST",
+                    url: "/plan/addPlan",
+                    data: $('#_scrf').serialize(),
+                    success: function (ajaxData) {
+                        if (ajaxData.type) {
+                            alert("添加成功");
+                            window.location.reload();
+                        }
+                    }
+                });
+
+            } else {
+                alert("截止时间不能为空");
+            }
+        } else {
+            alert("必填项不能为空");
+        }
+    })
+
+
+</script>
+</html>

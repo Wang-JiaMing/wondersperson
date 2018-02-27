@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="WD_PERSON">
+  <database-model serializer="dbm" rdbms="ORACLE" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="WD_PERSON">
+      <ObjectId>161</ObjectId>
+      <IntrospectionTimestamp>2018-02-11.14:00:33</IntrospectionTimestamp>
+      <CreatedTimestamp>2018-02-11.13:58:15</CreatedTimestamp>
+      <ModifiedTimestamp>2018-02-11.13:58:15</ModifiedTimestamp>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="PUBLIC">
+      <ObjectId>1</ObjectId>
+    </schema>
+    <schema id="4" parent="1" name="SYS">
+      <ObjectId>0</ObjectId>
+    </schema>
+    <schema id="5" parent="1" name="SYSTEM">
+      <ObjectId>5</ObjectId>
+    </schema>
+    <schema id="6" parent="1" name="OUTLN">
+      <ObjectId>9</ObjectId>
+    </schema>
+    <schema id="7" parent="1" name="DIP">
+      <ObjectId>14</ObjectId>
+    </schema>
+    <schema id="8" parent="1" name="ORACLE_OCM">
+      <ObjectId>21</ObjectId>
+    </schema>
+    <schema id="9" parent="1" name="DBSNMP">
+      <ObjectId>30</ObjectId>
+    </schema>
+    <schema id="10" parent="1" name="APPQOSSYS">
+      <ObjectId>31</ObjectId>
+    </schema>
+    <schema id="11" parent="1" name="WMSYS">
+      <ObjectId>32</ObjectId>
+    </schema>
+    <schema id="12" parent="1" name="EXFSYS">
+      <ObjectId>42</ObjectId>
+    </schema>
+    <schema id="13" parent="1" name="CTXSYS">
+      <ObjectId>43</ObjectId>
+    </schema>
+    <schema id="14" parent="1" name="XDB">
+      <ObjectId>45</ObjectId>
+    </schema>
+    <schema id="15" parent="1" name="ANONYMOUS">
+      <ObjectId>46</ObjectId>
+    </schema>
+    <schema id="16" parent="1" name="ORDSYS">
+      <ObjectId>53</ObjectId>
+    </schema>
+    <schema id="17" parent="1" name="ORDDATA">
+      <ObjectId>54</ObjectId>
+    </schema>
+    <schema id="18" parent="1" name="ORDPLUGINS">
+      <ObjectId>55</ObjectId>
+    </schema>
+    <schema id="19" parent="1" name="SI_INFORMTN_SCHEMA">
+      <ObjectId>56</ObjectId>
+    </schema>
+    <schema id="20" parent="1" name="MDSYS">
+      <ObjectId>57</ObjectId>
+    </schema>
+    <schema id="21" parent="1" name="OLAPSYS">
+      <ObjectId>61</ObjectId>
+    </schema>
+    <schema id="22" parent="1" name="MDDATA">
+      <ObjectId>65</ObjectId>
+    </schema>
+    <schema id="23" parent="1" name="SPATIAL_WFS_ADMIN_USR">
+      <ObjectId>67</ObjectId>
+    </schema>
+    <schema id="24" parent="1" name="SPATIAL_CSW_ADMIN_USR">
+      <ObjectId>70</ObjectId>
+    </schema>
+    <schema id="25" parent="1" name="SYSMAN">
+      <ObjectId>72</ObjectId>
+    </schema>
+    <schema id="26" parent="1" name="MGMT_VIEW">
+      <ObjectId>74</ObjectId>
+    </schema>
+    <schema id="27" parent="1" name="FLOWS_FILES">
+      <ObjectId>75</ObjectId>
+    </schema>
+    <schema id="28" parent="1" name="APEX_PUBLIC_USER">
+      <ObjectId>76</ObjectId>
+    </schema>
+    <schema id="29" parent="1" name="APEX_030200">
+      <ObjectId>78</ObjectId>
+    </schema>
+    <schema id="30" parent="1" name="OWBSYS">
+      <ObjectId>79</ObjectId>
+    </schema>
+    <schema id="31" parent="1" name="OWBSYS_AUDIT">
+      <ObjectId>83</ObjectId>
+    </schema>
+    <schema id="32" parent="1" name="SCOTT">
+      <ObjectId>84</ObjectId>
+    </schema>
+    <schema id="33" parent="1" name="RHIN_CLM">
+      <ObjectId>85</ObjectId>
+    </schema>
+    <schema id="34" parent="1" name="RHIN_US_CS">
+      <ObjectId>86</ObjectId>
+    </schema>
+    <schema id="35" parent="1" name="RHIN_BUFFER">
+      <ObjectId>87</ObjectId>
+    </schema>
+    <schema id="36" parent="1" name="RHIN_TR">
+      <ObjectId>88</ObjectId>
+    </schema>
+    <schema id="37" parent="1" name="RHIN_BAK">
+      <ObjectId>89</ObjectId>
+    </schema>
+    <schema id="38" parent="1" name="RHIN_SYS">
+      <ObjectId>90</ObjectId>
+    </schema>
+    <schema id="39" parent="1" name="RHIN_HEALTH">
+      <ObjectId>91</ObjectId>
+    </schema>
+    <schema id="40" parent="1" name="RHIN_REPORT">
+      <ObjectId>92</ObjectId>
+    </schema>
+    <schema id="41" parent="1" name="CEN_SYS">
+      <ObjectId>96</ObjectId>
+    </schema>
+    <schema id="42" parent="1" name="RHIN_PUB_BUFFER">
+      <ObjectId>97</ObjectId>
+    </schema>
+    <schema id="43" parent="1" name="RHIN_PUB">
+      <ObjectId>98</ObjectId>
+    </schema>
+    <schema id="44" parent="1" name="RHIN_ROOT_BAK">
+      <ObjectId>99</ObjectId>
+    </schema>
+    <schema id="45" parent="1" name="RHIN_ROOT_BUFFER">
+      <ObjectId>100</ObjectId>
+    </schema>
+    <schema id="46" parent="1" name="RHIN_ROOT">
+      <ObjectId>101</ObjectId>
+    </schema>
+    <schema id="47" parent="1" name="RHIN_INDEX">
+      <ObjectId>102</ObjectId>
+    </schema>
+    <schema id="48" parent="1" name="RHIN_CM">
+      <ObjectId>103</ObjectId>
+    </schema>
+    <schema id="49" parent="1" name="RHIN">
+      <ObjectId>104</ObjectId>
+    </schema>
+    <schema id="50" parent="1" name="CEN_ETL_V20">
+      <ObjectId>106</ObjectId>
+    </schema>
+    <schema id="51" parent="1" name="RHIN_PUB_BAK">
+      <ObjectId>107</ObjectId>
+    </schema>
+    <schema id="52" parent="1" name="AHMB">
+      <ObjectId>108</ObjectId>
+    </schema>
+    <schema id="53" parent="1" name="CS">
+      <ObjectId>109</ObjectId>
+    </schema>
+    <schema id="54" parent="1" name="AGREEMENT">
+      <ObjectId>112</ObjectId>
+    </schema>
+    <schema id="55" parent="1" name="RHIN_CARE">
+      <ObjectId>115</ObjectId>
+    </schema>
+    <schema id="56" parent="1" name="RHIN_GB">
+      <ObjectId>116</ObjectId>
+    </schema>
+    <schema id="57" parent="1" name="CNJK">
+      <ObjectId>122</ObjectId>
+    </schema>
+    <schema id="58" parent="1" name="RHIN_FY">
+      <ObjectId>123</ObjectId>
+    </schema>
+    <schema id="59" parent="1" name="PROSSO">
+      <ObjectId>126</ObjectId>
+    </schema>
+    <schema id="60" parent="1" name="PROSXZZ">
+      <ObjectId>127</ObjectId>
+    </schema>
+    <schema id="61" parent="1" name="RHIN_EXPERT">
+      <ObjectId>128</ObjectId>
+    </schema>
+    <schema id="62" parent="1" name="CNJKMD">
+      <ObjectId>130</ObjectId>
+    </schema>
+    <schema id="63" parent="1" name="ZNTS">
+      <ObjectId>134</ObjectId>
+    </schema>
+    <schema id="64" parent="1" name="RHIN_EMR">
+      <ObjectId>136</ObjectId>
+    </schema>
+    <schema id="65" parent="1" name="RHIN_US_IDX">
+      <ObjectId>137</ObjectId>
+    </schema>
+    <schema id="66" parent="1" name="RHIN_US_MDI">
+      <ObjectId>138</ObjectId>
+    </schema>
+    <schema id="67" parent="1" name="RHIN_CS">
+      <ObjectId>139</ObjectId>
+    </schema>
+    <schema id="68" parent="1" name="FJZLPT">
+      <ObjectId>140</ObjectId>
+    </schema>
+    <schema id="69" parent="1" name="RHIN_PROV">
+      <ObjectId>141</ObjectId>
+    </schema>
+    <schema id="70" parent="1" name="RHIN_ZWWEB">
+      <ObjectId>143</ObjectId>
+    </schema>
+    <schema id="71" parent="1" name="RHIN_EXCHANGE">
+      <ObjectId>144</ObjectId>
+    </schema>
+    <schema id="72" parent="1" name="DZZW">
+      <ObjectId>151</ObjectId>
+    </schema>
+    <schema id="73" parent="1" name="RHIN_TEST">
+      <ObjectId>152</ObjectId>
+    </schema>
+    <schema id="74" parent="1" name="DRUG_STAT">
+      <ObjectId>153</ObjectId>
+    </schema>
+    <schema id="75" parent="1" name="WJS">
+      <ObjectId>154</ObjectId>
+    </schema>
+    <schema id="76" parent="1" name="CFW">
+      <ObjectId>155</ObjectId>
+    </schema>
+    <schema id="77" parent="1" name="GDYC">
+      <ObjectId>158</ObjectId>
+    </schema>
+    <schema id="78" parent="1" name="GDYC_DRUG_USAGE">
+      <ObjectId>159</ObjectId>
+    </schema>
+    <schema id="79" parent="1" name="WD_TEST">
+      <ObjectId>160</ObjectId>
+    </schema>
+    <schema id="80" parent="1" name="XS$NULL">
+      <ObjectId>2147483638</ObjectId>
+    </schema>
+    <sequence id="81" parent="2" name="HIBERNATE_SEQUENCE">
+      <ObjectId>151123</ObjectId>
+      <CreatedTimestamp>2018-02-11.13:58:15</CreatedTimestamp>
+      <ModifiedTimestamp>2018-02-11.13:58:15</ModifiedTimestamp>
+      <SequenceIdentity>1</SequenceIdentity>
+    </sequence>
+    <table id="82" parent="2" name="SYS_ROLE">
+      <ObjectId>151124</ObjectId>
+      <CreatedTimestamp>2018-02-11.13:58:15</CreatedTimestamp>
+      <ModifiedTimestamp>2018-02-11.13:58:15</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="83" parent="2" name="SYS_USER">
+      <ObjectId>151126</ObjectId>
+      <CreatedTimestamp>2018-02-11.13:58:15</CreatedTimestamp>
+      <ModifiedTimestamp>2018-02-11.13:58:15</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <table id="84" parent="2" name="SYS_USER_ROLES">
+      <ObjectId>151128</ObjectId>
+      <CreatedTimestamp>2018-02-11.13:58:15</CreatedTimestamp>
+      <ModifiedTimestamp>2018-02-11.13:58:15</ModifiedTimestamp>
+      <TemporaryPreserve>1</TemporaryPreserve>
+    </table>
+    <column id="85" parent="82" name="ID">
+      <Position>1</Position>
+      <DataType>NUMBER(19)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="86" parent="82" name="NAME">
+      <Position>2</Position>
+      <DataType>VARCHAR2(255 char)|0</DataType>
+    </column>
+    <index id="87" parent="82" name="SYS_C0070573">
+      <ObjectId>151125</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2018-02-11.13:58:15</CreatedTimestamp>
+      <ModifiedTimestamp>2018-02-11.13:58:15</ModifiedTimestamp>
+      <TablespaceName>WD_PERSON</TablespaceName>
+      <ColNames>ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="88" parent="82" name="SYS_C0070573">
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2018-02-11.13:58:15</ModifiedTimestamp>
+      <ColNames>ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SYS_C0070573</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="89" parent="83" name="ID">
+      <Position>1</Position>
+      <DataType>NUMBER(19)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="90" parent="83" name="CREATE_DATE">
+      <Position>2</Position>
+      <DataType>TIMESTAMP(6)|0</DataType>
+    </column>
+    <column id="91" parent="83" name="ISENABLED">
+      <Position>3</Position>
+      <DataType>NUMBER(1)|0</DataType>
+    </column>
+    <column id="92" parent="83" name="NAME">
+      <Position>4</Position>
+      <DataType>VARCHAR2(255 char)|0</DataType>
+    </column>
+    <column id="93" parent="83" name="PASSWORD">
+      <Position>5</Position>
+      <DataType>VARCHAR2(255 char)|0</DataType>
+    </column>
+    <column id="94" parent="83" name="USERNAME">
+      <Position>6</Position>
+      <DataType>VARCHAR2(255 char)|0</DataType>
+    </column>
+    <column id="95" parent="83" name="USERNO">
+      <Position>7</Position>
+      <DataType>VARCHAR2(255 char)|0</DataType>
+    </column>
+    <index id="96" parent="83" name="SYS_C0070575">
+      <ObjectId>151127</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <CreatedTimestamp>2018-02-11.13:58:15</CreatedTimestamp>
+      <ModifiedTimestamp>2018-02-11.13:58:15</ModifiedTimestamp>
+      <TablespaceName>WD_PERSON</TablespaceName>
+      <ColNames>ID</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="97" parent="83" name="SYS_C0070575">
+      <NameSurrogate>1</NameSurrogate>
+      <ModifiedTimestamp>2018-02-11.13:58:15</ModifiedTimestamp>
+      <ColNames>ID</ColNames>
+      <InitiallyDeferred>1</InitiallyDeferred>
+      <UnderlyingIndexName>SYS_C0070575</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <column id="98" parent="84" name="SYS_USER_ID">
+      <Position>1</Position>
+      <DataType>NUMBER(19)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="99" parent="84" name="ROLES_ID">
+      <Position>2</Position>
+      <DataType>NUMBER(19)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <foreign-key id="100" parent="84" name="FKD0UT7SLOES191BYGYF7A3PK52">
+      <ModifiedTimestamp>2018-02-11.13:58:15</ModifiedTimestamp>
+      <ColNames>SYS_USER_ID</ColNames>
+      <RefSchemaName>WD_PERSON</RefSchemaName>
+      <RefTableName>SYS_USER</RefTableName>
+      <RefKeyName>SYS_C0070575</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+    <foreign-key id="101" parent="84" name="FKDPVC6D7XQPQR43DFUK1S27CQH">
+      <ModifiedTimestamp>2018-02-11.13:58:15</ModifiedTimestamp>
+      <ColNames>ROLES_ID</ColNames>
+      <RefSchemaName>WD_PERSON</RefSchemaName>
+      <RefTableName>SYS_ROLE</RefTableName>
+      <RefKeyName>SYS_C0070573</RefKeyName>
+      <OnDelete>restrict</OnDelete>
+    </foreign-key>
+  </database-model>
+</dataSource>

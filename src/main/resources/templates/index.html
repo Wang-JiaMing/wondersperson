@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      lang="zh-CN">
+<head th:include="/include/head"></head>
+<body>
+
+<div th:include="/include/nav::inNav"></div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4" align="center">
+            <div class="panel panel-primary" style="height: 400px">
+                <div class="panel-heading">待办清单</div>
+                <div class="panel-body pre-scrollable">
+                    <div class="list-group">
+                        <a th:href="${list.url}"
+                           th:class="${list.type=='0'}?'list-group-item list-group-item-info':(${list.type=='1'}?'list-group-item list-group-item-warning':'list-group-item list-group-item-danger')"
+                           th:each="list,listStat:${myLists}">
+                        <span th:text="${listStat.index+1}"></span>.
+                        <span th:text=" ${list.listContent}"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4" align="center">
+            <div class="panel panel-warning" style="height: 400px">
+                <div class="panel-heading">技术分享</div>
+                <div class="panel-body pre-scrollable">
+                    <div class="list-group">
+                        <a href="javassist:void(0)"
+                           th:onclick="'javascript:toUrl(\''+${list.id}+'\',\''+${list.url}+'\')'"
+                           class="list-group-item list-group-item-warning" th:each="list,listStat:${shareUrlList}">
+                            <span th:text="${listStat.index+1}"></span>.
+                            <span th:text="${list.listContent}"></span>[<span th:text="${list.createUser}"></span>]
+                            <span class="badge" th:text="${list.clickNumber}"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4" align="center">
+            <div class="panel panel-success" style="height: 400px">
+                <div class="panel-heading">快速通道</div>
+                <div class="panel-body pre-scrollable">
+                    <div class="list-group">
+                        <a th:href="${list.url}" target="_blank" class="list-group-item list-group-item-success"
+                           th:each="list,listStat:${fastUrl}" >
+                            <span th:text="${listStat.index+1}"></span>.
+                            <span th:text=" ${list.listContent}"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <form id="addUrl">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <div class="row">
+            <div class="col-md-12" align="center">
+                <div class="panel panel-default">
+                    <div class="panel-heading">添加技术分享</div>
+                    <div class="panel-body pre-scrollable">
+                        <div class="row">
+                            <div class="col-md-12" align="center">
+                                <div class="input-group">
+                                    <span class="input-group-addon">标题 <span style="color: red">*</span></span>
+                                    <input type="text" id="listContent" class="form-control" name="listContent"
+                                           value=""/>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-12" align="center">
+                                <div class="input-group">
+                                    <span class="input-group-addon">http:// <span style="color: red">*</span></span>
+                                    <input type="text" id="url" class="form-control" name="url" value=""/>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="row">-->
+                        <!--<div class="col-md-12" align="center">-->
+                        <!--<div class="input-group">-->
+                        <!--<span class="input-group-addon" id="rg-name-span">推荐理由</span>-->
+                        <!--<input type="text" id="whyShare" class="form-control" name="whyShare" value=""/>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                    </div>
+                    <div class="modal-footer">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                        <button type="button" th:onclick="'javascript:addUrl()'" id="rgBtn" class="btn btn-default">分
+                            享
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<form id="updateClick">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <input type="hidden" name="id" id="updateId" value=""/>
+</form>
+
+</body>
+<script>
+    function addUrl() {
+        $.ajax({
+            type: "POST",
+            url: "/shareUrl/addurl",
+            data: $('#addUrl').serialize(),
+            success: function (data) {
+                if (data.type) {
+                    alert("分享成功");
+                    window.location.reload();
+                } else {
+                    alert(data.msg);
+                }
+
+            }
+        });
+    }
+
+    function toUrl(id, url) {
+        $('#updateId').val(id);
+        $.ajax({
+            type: "POST",
+            url: "/shareUrl/updateClick",
+            data: $('#updateClick').serialize(),
+            success: function (data) {
+                if (data.type) {
+                    window.location.reload();
+                    window.open(url);
+                } else {
+                    alert("操作失败");
+                }
+
+            }
+        });
+    }
+</script>
+</html>
