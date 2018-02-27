@@ -93,13 +93,15 @@ public class PlanService {
         }
         List<Object[]> otherUser=planInfoRepository.otherUser(id);
         for(Object[] user:otherUser){
-            UserPlan userPlan=new UserPlan();
-            userPlan.setId(user[0]+"");
-            userPlan.setEmail(user[5]+"");
-            userPlan.setName(user[4]+"");
-            userPlan.setNo(user[6]+"");
-            userPlan.setType("0");
-            userPlanList.add(userPlan);
+            if(!"admin".equals(user[3]+"")) {
+                UserPlan userPlan = new UserPlan();
+                userPlan.setId(user[0] + "");
+                userPlan.setEmail(user[5] + "");
+                userPlan.setName(user[3] + "");
+                userPlan.setNo(user[6] + "");
+                userPlan.setType("0");
+                userPlanList.add(userPlan);
+            }
         }
         return userPlanList;
     }
