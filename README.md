@@ -1,4 +1,6 @@
 # wondersperson
+>作者:小明同学
+>时间：2018-02-27
 ### 快速部署方法
 1、在oracle里建立WD_PERSON账号(账号密码均为WD_PERSON)
 
