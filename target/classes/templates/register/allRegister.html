@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      lang="zh-CN">
+<head th:include="/include/cdHead">
+
+
+</head>
+<body>
+
+<div th:include="/include/nav::inNav"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" align="center">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    人员签到列表
+                </div>
+                <div class="panel-body">
+                    <table id="allRegister" class="display">
+                        <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>时间</th>
+                            <th>签到时间</th>
+                            <th>备注</th>
+                        </tr>
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+<script>
+
+    $(function () {
+        table = $('#allRegister').DataTable({
+            ajax: {
+                url: '/register/allRegistList',
+                dataSrc: ''
+            },
+            columns: [
+                {data: 'name'},
+                {data: 'registerDate'},
+                {data: 'registerTime'},
+                {data: 'remark'}
+
+            ]
+        });
+    });
+
+
+</script>
+</html>

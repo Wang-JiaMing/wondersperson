@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      lang="zh-CN">
+<head th:include="/include/cdHead">
+
+
+</head>
+<body>
+
+<div th:include="/include/nav::inNav"></div>
+<form id="_scrf">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <input type="hidden" name="id" id="id" value=""/>
+</form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12" align="center">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    我的公告列表
+                    <div align="right" style="float:right">
+                        <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                            <button type="button" class="btn btn-info" id="addAnn">添加公告</button>
+                            <button type="button" class="btn btn-info" id="checkAnn">查看公告</button>
+                            <button type="button" class="btn btn-danger" id="deleteRow">删除公告</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table id="ann" class="display">
+                        <thead>
+                        <tr>
+                            <th>标题</th>
+                            <th>时间</th>
+                            <th>阅读量</th>
+                        </tr>
+                        </thead>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body" id="mbody">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addAnnModel" tabindex="-1" role="dialog" aria-labelledby="addAnn">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="addTitle">添加公告</h4>
+            </div>
+            <div class="modal-body" id="mbody">
+                ...11
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    var table,data;
+
+    $('#deleteRow').click(function(){
+        console.info(data)
+        if(data){
+            var res = confirm("确定删除"+data.title+"记录么？");
+            if(res == true){
+                $('#id').val(data.id)
+                $.ajax({
+                    type: "POST",
+                    url: "/ann/removeAnn",
+                    data: $('#_scrf').serialize(),
+                    success: function (data) {
+                        if(data.type){
+                            table.row('.selected').remove().draw( false );
+                            data='';
+                            alert("成功删除");
+                        }
+                    }
+                });
+            }
+        }else{
+            alert("请单击选中一列再操作");
+        }
+    });
+
+    $('#addAnn').click(function () {
+        $('#addAnnModel').modal('show');
+    })
+
+    $('#checkAnn').click(function () {
+        if(data){
+            $('#myModalLabel').html("");
+            $('#mbody').html("");
+            $('#myModalLabel').html(data.title);
+            $('#mbody').html(data.content);
+            $('#myModal').modal('show');
+        }else{
+            alert("请单击选中一列再操作");
+        }
+    })
+
+    $(function () {
+        table = $('#ann').DataTable({
+            buttons: ['colvis', 'excel', 'print'],
+            ajax: {
+                url: '/ann/myAnnList',
+                dataSrc: ''
+            },
+            columns: [
+                {data: 'title'},
+                {data: 'createDate'},
+                {data: 'readNumber'}
+
+            ]
+        });
+
+
+        $('#ann tbody').on( 'click', 'tr', function () {
+            if ( $(this).hasClass('selected') ) {
+                $(this).removeClass('selected');
+                data='';
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                data = table.row(this).data();
+            }
+        } );
+
+    });
+
+
+</script>
+</html>

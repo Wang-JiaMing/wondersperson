@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      lang="zh-CN">
+<head>
+
+</head>
+<body>
+
+
+<div th:fragment="inNav">
+    <form id="_scrfLogout" action="/logout" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    </form>
+
+
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{/}">人员系统Mini</a>
+            </div>
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <li><a th:href="@{/register/register}">签到</a></li>
+                </ul>
+            </div>
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <li><a th:href="@{/plan/planIndex}">任务计划</a></li>
+                </ul>
+            </div>
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <li><a th:href="@{/user/personIndex}">人员列表</a></li>
+                </ul>
+            </div>
+            <div class="navbar-header" sec:authorize="hasRole('ROLE_ADMIN')">
+                <ul class="nav navbar-nav">
+                    <li><a th:href="@{/register/allRegistIndex}">签到记录</a></li>
+                </ul>
+            </div>
+            <!--<div class="navbar-header">-->
+            <!--<ul class="nav navbar-nav">-->
+            <!--<li><a th:href="@{/ann/myAnn}">公告</a></li>-->
+            <!--</ul>-->
+            <!--</div>-->
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <li><a th:href="@{/user/updatePasswordIndex}">修改密码</a></li>
+                </ul>
+            </div>
+            <div class="navbar-header">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="javascript:void(0)" onclick="logout()">退出系统</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+
+    </nav>
+
+
+    <script>
+        function logout() {
+            $('#_scrfLogout').submit()
+        };
+    </script>
+</div>
+
+</body>
+
+</html>
