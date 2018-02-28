@@ -17,7 +17,7 @@ import java.util.Date;
 public class SendMail {
 
     public static String myEmailAccount = "gzwanda020@sina.com";
-    public static String myEmailPassword = "gzwanda020";
+    public static String myEmailPassword = "";
     public static String myEmailSMTPHost = "smtp.sina.com";
     public final void sendHtmlMail(String title,String content,String addressMail)throws Exception{
         // 不要使用SimpleEmail,会出现乱码问题
