@@ -4,6 +4,7 @@ import com.wondersgroup.model.PlanInfo;
 import com.wondersgroup.model.SysUser;
 import com.wondersgroup.service.PlanService;
 import com.wondersgroup.service.UserService;
+import com.wondersgroup.utils.DateUtil;
 import com.wondersgroup.utils.Message;
 import com.wondersgroup.view.PlanInfoViewModel;
 import com.wondersgroup.view.UserPlan;
@@ -44,8 +45,8 @@ public class PlanController {
             planInfoViewModel.setId(planInfo.getId() + "");
             planInfoViewModel.setPlanLable(planInfo.getPlanLable());
             planInfoViewModel.setPlanTitle(planInfo.getPlanTitle());
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-            planInfoViewModel.setLastDate(sdf.format(planInfo.getLastDate()));
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+            planInfoViewModel.setLastDate(DateUtil.format(planInfo.getLastDate()));
             planInfoViewModel.setCreateUser(planInfo.getCreateUser());
             StringBuffer sb = new StringBuffer();
             for (SysUser user : planInfo.getSysUsers()) {
@@ -73,7 +74,7 @@ public class PlanController {
             }
 
             if (planInfo.getOverDate() != null) {
-                planInfoViewModel.setOverDate(sdf.format(planInfo.getOverDate()));
+                planInfoViewModel.setOverDate(DateUtil.format(planInfo.getOverDate()));
             }
             planInfoViewModel.setOverUserName(planInfo.getOverUserName());
             planInfoViewModelList.add(planInfoViewModel);

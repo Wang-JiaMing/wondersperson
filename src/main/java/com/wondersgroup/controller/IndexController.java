@@ -84,9 +84,9 @@ public class IndexController {
          */
         List<MyList> myLists = new ArrayList<>();
         if (registerService.findTodayRegister(sysUser.getId() + "")) {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/mm/dd");
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/mm/dd");
             MyList myList = new MyList();
-            myList.setListContent("今天还没签到[截止时间:" + sdf.format(new Date()) + "]");
+            myList.setListContent("今天还没签到[截止时间:" + DateUtil.format(new Date()) + "]");
             myList.setType("2");
             myList.setUrl("/register/register");
             myLists.add(myList);

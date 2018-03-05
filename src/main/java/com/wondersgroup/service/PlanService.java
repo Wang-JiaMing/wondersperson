@@ -44,8 +44,8 @@ public class PlanService {
         planInfo.setCreateDate(new Date());
         planInfo.setCreateUser(sysUser.getName());
         planInfo.setPlanTitle(planInfoViewModel.getPlanTitle());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
-        planInfo.setLastDate(sdf.parse(planInfoViewModel.getLastDate()));
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+        planInfo.setLastDate(DateUtil.parse(planInfoViewModel.getLastDate()));
         planInfo.setPlanLable(planInfoViewModel.getPlanLable());
         planInfo.setPlanLevel(planInfoViewModel.getPlanLevel());
         planInfo.setStatus("0");
