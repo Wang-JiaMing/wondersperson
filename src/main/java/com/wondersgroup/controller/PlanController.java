@@ -149,4 +149,17 @@ public class PlanController {
         return message;
     }
 
+    @RequestMapping("/deletePlan")
+    @ResponseBody
+    public Message deletePlan(String id){
+        Message message=new Message();
+        try {
+            planService.deletePlan(id);
+            message.setType(true);
+        }catch (Exception e){
+            e.printStackTrace();
+            message.setType(false);
+        }
+        return message;
+    }
 }

@@ -18,9 +18,9 @@ import java.util.List;
  **/
 public interface PlanInfoRepository extends JpaRepository<PlanInfo, Long> {
 
-    public List<PlanInfo> findAllBySysUsersOrderByStatusAscPlanLevelDescLastDateAsc(SysUser sysUser);
+    public List<PlanInfo> findAllBySysUsersAndRemovedOrderByStatusAscPlanLevelDescLastDateAsc(SysUser sysUser,String removed);
 
-    public List<PlanInfo> findBySysUsersAndAndStatusOrderByPlanLevelDescLastDateAsc(SysUser sysUser, String status);
+    public List<PlanInfo> findBySysUsersAndStatusAndRemovedOrderByPlanLevelDescLastDateAsc(SysUser sysUser, String status,String removed);
 
     @Modifying
     @Query(value = "update PLAN_INFO i set i.status='1',i.over_date=sysdate,i.over_user_name=? where i.id=? ", nativeQuery = true)
@@ -31,4 +31,9 @@ public interface PlanInfoRepository extends JpaRepository<PlanInfo, Long> {
 
     @Query(nativeQuery = true, value = "select * from SYS_USER s where s.id not in(Select sys_users_id from plan_info_sys_users where plan_info_id=?) and isenabled=1 ")
     public List<Object[]> otherUser(String planId);
+
+    @Modifying
+    @Query(value = "update PLAN_INFO i set i.removed='1' where i.id=? ", nativeQuery = true)
+    public void deletePlan(Long id);
+
 }

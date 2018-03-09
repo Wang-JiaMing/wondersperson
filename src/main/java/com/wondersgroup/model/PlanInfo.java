@@ -26,9 +26,17 @@ public class PlanInfo {
     private String status;
     private String overUserName;
     private Date overDate;
-
+    private String removed;
     @ManyToMany(cascade = {CascadeType.REFRESH},fetch = FetchType.EAGER)
     private List<SysUser> sysUsers;
+
+    public String getRemoved() {
+        return removed;
+    }
+
+    public void setRemoved(String removed) {
+        this.removed = removed;
+    }
 
     public String getStatus() {
         return status;

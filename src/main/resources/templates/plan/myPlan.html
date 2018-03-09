@@ -11,23 +11,30 @@
 <div th:include="include/nav::inNav"></div>
 
 <div class="container">
+    <div class="panel panel-info">
+        <div class="panel-body" style="padding: 3px">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-primary" id="addPlanBtn">添加任务</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-12" align="center">
             <div class="panel panel-info">
                 <div class="panel-heading">
                     任务计划
-                    <div align="right" style="float:right">
-                        <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                            <button type="button" class="btn btn-info" id="addPlanBtn">添加任务</button>
-                        </div>
-                    </div>
+
                 </div>
-                <div class="panel-body pre-scrollable">
+                <div class="panel-body ">
                     <table class="table">
-                        <tr >
+                        <tr>
                             <th width="100px">标签</th>
                             <th width="200px">任务计划</th>
-                            <th>结束时间</th>
+                            <th>截止时间</th>
                             <th>创建人</th>
                             <th>涉及人</th>
                             <th>优先级</th>
@@ -69,6 +76,9 @@
                                 </button>
                                 <button th:if="${pl.addUserButton=='0'}" type="button" class="btn btn-xs btn-info"
                                         th:onclick="'javascript:sendMail(\''+${pl.id}+'\')'">邮件通知
+                                </button>
+                                <button th:if="${pl.status=='0'}" class="btn btn-xs btn-danger" type="button"
+                                        th:onclick="'javascript:deletePlan(\''+${pl.id}+'\')'">删除
                                 </button>
                             </td>
                         </tr>
@@ -150,7 +160,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="modal-footer" >
+            <div class="modal-footer">
                 <button class="btn btn-xs btn-primary" type="button" th:onclick="'javascript:addUserAction()'">确定
                 </button>
             </div>
@@ -178,7 +188,26 @@
 </body>
 <script>
 
-    function sendMail(id){
+    function deletePlan(id) {
+        $('#_scrfSendMail_id').val(id);
+        if (confirm("确定删除该任务？")) {
+            $.ajax({
+                type: "POST",
+                url: "/plan/deletePlan",
+                data: $('#_scrfSendMail').serialize(),
+                success: function (ajaxData) {
+                    if (ajaxData.type) {
+                        alert("删除成功");
+                    } else {
+                        alert("error");
+                    }
+                }
+            });
+
+        }
+    }
+
+    function sendMail(id) {
         $('#_scrfSendMail_id').val(id);
         var res = confirm("确定发送邮件通知任务涉及人吗？");
         if (res == true) {

@@ -44,7 +44,7 @@ public class PlanService {
         planInfo.setCreateDate(new Date());
         planInfo.setCreateUser(sysUser.getName());
         planInfo.setPlanTitle(planInfoViewModel.getPlanTitle());
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
+        planInfo.setRemoved("0");
         planInfo.setLastDate(DateUtil.parse(planInfoViewModel.getLastDate()));
         planInfo.setPlanLable(planInfoViewModel.getPlanLable());
         planInfo.setPlanLevel(planInfoViewModel.getPlanLevel());
@@ -53,13 +53,13 @@ public class PlanService {
     }
 
     public List<PlanInfo> findMyPlan(SysUser sysUser) {
-        List<PlanInfo> planInfos = planInfoRepository.findAllBySysUsersOrderByStatusAscPlanLevelDescLastDateAsc(sysUser);
+        List<PlanInfo> planInfos = planInfoRepository.findAllBySysUsersAndRemovedOrderByStatusAscPlanLevelDescLastDateAsc(sysUser,"0");
         return planInfos;
     }
 
 
     public List<PlanInfo> findIndexPlan(SysUser sysUser) {
-        List<PlanInfo> planInfos = planInfoRepository.findBySysUsersAndAndStatusOrderByPlanLevelDescLastDateAsc(sysUser, "0");
+        List<PlanInfo> planInfos = planInfoRepository.findBySysUsersAndStatusAndRemovedOrderByPlanLevelDescLastDateAsc(sysUser, "0","0");
         return planInfos;
     }
 
@@ -128,6 +128,10 @@ public class PlanService {
                 sendMail.sendHtmlMail(title.toString(),htmlContent.toString(),user.getUsername());
             }
         }
+    }
 
+    @Transactional(rollbackFor = Exception.class)
+    public void deletePlan(String id){
+        planInfoRepository.deletePlan(Long.valueOf(id));
     }
 }
