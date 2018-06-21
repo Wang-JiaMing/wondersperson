@@ -6,6 +6,8 @@ com/wondersgroup/service/NewsService.class
 com/wondersgroup/view/MyList.class
 com/wondersgroup/controller/RegisterController.class
 com/wondersgroup/view/UserPlan.class
+com/wondersgroup/utils/PersonReportList.class
+com/wondersgroup/tasks/PersonReport.class
 com/wondersgroup/WonderspersonApplication.class
 com/wondersgroup/dao/AnnouncementRepository.class
 com/wondersgroup/dao/ShareUrlRepository.class
@@ -15,9 +17,11 @@ com/wondersgroup/dao/SysRoleRepository.class
 com/wondersgroup/service/PlanService.class
 com/wondersgroup/model/News.class
 com/wondersgroup/controller/ShareUrlController.class
+com/wondersgroup/service/RegisterStatService.class
 com/wondersgroup/service/UserService.class
 com/wondersgroup/controller/AnnouncementController.class
 com/wondersgroup/service/ShareUrlService.class
+com/wondersgroup/utils/PersonReportMail.class
 com/wondersgroup/view/PlanInfoViewModel.class
 com/wondersgroup/service/AnnouncementService.class
 com/wondersgroup/model/SysUser.class

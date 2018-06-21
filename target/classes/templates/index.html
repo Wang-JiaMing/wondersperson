@@ -31,8 +31,7 @@
                 <div class="panel-heading">技术分享</div>
                 <div class="panel-body pre-scrollable">
                     <div class="list-group">
-                        <a href="javassist:void(0)"
-                           th:onclick="'javascript:toUrl(\''+${list.id}+'\',\''+${list.url}+'\')'"
+                        <a th:onclick="'javascript:toUrl(\''+${list.id}+'\',\''+${list.url}+'\')'"
                            class="list-group-item list-group-item-warning" th:each="list,listStat:${shareUrlList}">
                             <span th:text="${listStat.index+1}"></span>.
                             <span th:text="${list.listContent}"></span>[<span th:text="${list.createUser}"></span>]
@@ -129,6 +128,7 @@
     }
 
     function toUrl(id, url) {
+        window.open(url);
         $('#updateId').val(id);
         $.ajax({
             type: "POST",
@@ -137,7 +137,6 @@
             success: function (data) {
                 if (data.type) {
                     window.location.reload();
-                    window.open(url);
                 } else {
                     alert("操作失败");
                 }

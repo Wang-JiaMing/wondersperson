@@ -34,8 +34,8 @@
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="maven.repo.local" value="/Users/wangjiaming/workspace/maven"/>
-    <property name="os.version" value="10.13.3"/>
-    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="os.version" value="10.13.5"/>
+    <property name="http.nonProxyHosts" value="local„ÄÅ169.254/16„ÄÅlocalhost|*.local„ÄÅ169.254/16„ÄÅlocalhost"/>
     <property name="library.jansi.path" value="/Users/wangjiaming/tool/apache-maven-3.5.0/lib/jansi-native/osx64"/>
     <property name="user.home" value="/Users/wangjiaming"/>
     <property name="user.timezone" value="Asia/Shanghai"/>
@@ -61,8 +61,8 @@
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
-    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
-    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="socksNonProxyHosts" value="local„ÄÅ169.254/16„ÄÅlocalhost|*.local„ÄÅ169.254/16„ÄÅlocalhost"/>
+    <property name="ftp.nonProxyHosts" value="local„ÄÅ169.254/16„ÄÅlocalhost|*.local„ÄÅ169.254/16„ÄÅlocalhost"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
   <testcase name="contextLoads" classname="com.wondersgroup.wondersperson.WonderspersonApplicationTests" time="0"/>

@@ -1,4 +1,5 @@
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/service/NewsService.java
+/Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/service/RegisterStatService.java
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/controller/PlanController.java
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/utils/Message.java
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/utils/SendMail.java
@@ -7,10 +8,12 @@
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/service/ShareUrlService.java
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/model/ShareUrl.java
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/dao/RegisterRepository.java
+/Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/tasks/PersonReport.java
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/dao/ShareUrlRepository.java
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/utils/DateUtil.java
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/service/PlanService.java
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/dao/PlanInfoRepository.java
+/Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/utils/PersonReportMail.java
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/controller/IndexController.java
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/model/Register.java
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/service/UserService.java
@@ -23,6 +26,7 @@
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/WonderspersonApplication.java
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/controller/ShareUrlController.java
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/view/RegisterViewModel.java
+/Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/utils/PersonReportList.java
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/view/MyList.java
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/service/CustomUserService.java
 /Users/wangjiaming/workspace/java/wondersperson/src/main/java/com/wondersgroup/dao/AnnouncementRepository.java

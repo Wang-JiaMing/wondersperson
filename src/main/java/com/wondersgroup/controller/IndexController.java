@@ -50,6 +50,9 @@ public class IndexController {
     @Autowired
     ShareUrlService shareUrlService;
 
+    @Autowired
+    RegisterStatService registerStatService;
+
     @RequestMapping("/")
     public String saveUser(Model model) throws Exception{
         SysUser sysUser = (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -111,6 +114,12 @@ public class IndexController {
 
         model.addAttribute("myLists", myLists);
         return "index";
+    }
+
+    @RequestMapping("/demo")
+    public String toDemo()throws Exception{
+        registerStatService.mailModal("67");
+        return "report";
     }
 
 }
