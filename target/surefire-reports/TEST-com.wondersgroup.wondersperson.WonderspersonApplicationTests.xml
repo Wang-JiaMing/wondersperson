@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.wondersgroup.wondersperson.WonderspersonApplicationTests" time="0" tests="1" errors="0" skipped="0" failures="0">
+<testsuite name="com.wondersgroup.wondersperson.WonderspersonApplicationTests" time="0.001" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="idea.version" value="2017.2.6"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
@@ -65,5 +65,5 @@
     <property name="ftp.nonProxyHosts" value="local„ÄÅ169.254/16„ÄÅlocalhost|*.local„ÄÅ169.254/16„ÄÅlocalhost"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase name="contextLoads" classname="com.wondersgroup.wondersperson.WonderspersonApplicationTests" time="0"/>
+  <testcase name="contextLoads" classname="com.wondersgroup.wondersperson.WonderspersonApplicationTests" time="0.001"/>
 </testsuite>
