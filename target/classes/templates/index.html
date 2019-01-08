@@ -9,7 +9,6 @@
 
 <div class="container">
     <div class="row">
-
         <div class="col-md-4" align="center">
             <div class="panel panel-primary" style="height: 400px">
                 <div class="panel-heading">待办清单</div>
@@ -18,15 +17,24 @@
                         <a th:href="${list.url}"
                            th:class="${list.type=='0'}?'list-group-item list-group-item-info':(${list.type=='1'}?'list-group-item list-group-item-warning':'list-group-item list-group-item-danger')"
                            th:each="list,listStat:${myLists}">
-                        <span th:text="${listStat.index+1}"></span>.
-                        <span th:text=" ${list.listContent}"></span>
+                            <span th:text="${listStat.index+1}"></span>.
+                            <span th:text=" ${list.listContent}"></span>
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="col-md-4" align="center">
+        <div class="col-md-8" align="center">
+            <div class="panel panel-info" style="height: 400px">
+                <div class="panel-heading">个人签到概览</div>
+                <div class="panel-body">
+                    <div id="registerLine" style="width: 700px;height:330px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8" align="center">
             <div class="panel panel-warning" style="height: 400px">
                 <div class="panel-heading">网络分享</div>
                 <div class="panel-body pre-scrollable">
@@ -48,7 +56,7 @@
                 <div class="panel-body pre-scrollable">
                     <div class="list-group">
                         <a th:href="${list.url}" target="_blank" class="list-group-item list-group-item-success"
-                           th:each="list,listStat:${fastUrl}" >
+                           th:each="list,listStat:${fastUrl}">
                             <span th:text="${listStat.index+1}"></span>.
                             <span th:text=" ${list.listContent}"></span>
                         </a>
@@ -86,7 +94,8 @@
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                        <button type="button" th:onclick="'javascript:addUrl()'" id="rgBtn" class="btn btn-primary btn-xs">分
+                        <button type="button" th:onclick="'javascript:addUrl()'" id="rgBtn"
+                                class="btn btn-primary btn-xs">分
                             享
                         </button>
                     </div>
@@ -101,7 +110,7 @@
 </form>
 
 </body>
-<script>
+<script th:inline="javascript">
     function addUrl() {
         $.ajax({
             type: "POST",
@@ -135,6 +144,58 @@
 
             }
         });
+    }
+
+    $(function () {
+        drawLine();
+    })
+
+    function drawLine() {
+        var lineData = [[${line}]];
+        var registerLine = echarts.init(document.getElementById('registerLine'));
+        console.info(lineData)
+        /*<![CDATA[*/
+        var option=option = {
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['个人签到记录']
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            dataZoom: [
+                {
+                    show: true,
+                    start: 90,
+                    end: 100
+                }
+            ],
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: lineData.xAxisData
+            },
+            yAxis: {
+                type: 'value',
+                min: 'dataMin',
+                axisLabel:{formatter:'{value}(时.分)'}
+            },
+            series: [
+                {
+                    name:'个人签到记录',
+                    type:'line',
+                    stack: '签到时间',
+                    data:lineData.lineSeries[0].data,
+                }
+            ]
+        };
+
+        /*]]>*/
+        registerLine.setOption(option);
     }
 </script>
 </html>

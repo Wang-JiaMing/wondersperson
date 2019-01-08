@@ -1,5 +1,6 @@
 package com.wondersgroup.controller;
 
+import com.wondersgroup.echartmodal.Line;
 import com.wondersgroup.model.Announcement;
 import com.wondersgroup.model.PlanInfo;
 import com.wondersgroup.model.ShareUrl;
@@ -53,6 +54,9 @@ public class IndexController {
     @Autowired
     RegisterStatService registerStatService;
 
+    @Autowired
+    ChartService chartService;
+
     @RequestMapping("/")
     public String saveUser(Model model) throws Exception{
         SysUser sysUser = (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -69,25 +73,25 @@ public class IndexController {
         fastUrl.add(new MyList("ECharts  API","http://echarts.baidu.com"));
         fastUrl.add(new MyList("Maven Repository","http://mvnrepository.com"));
         fastUrl.add(new MyList("Github","https://github.com"));
-
         model.addAttribute("fastUrl",fastUrl);
-
 
         /**
          * 分享
          */
         List<ShareUrl> shareUrlList = shareUrlService.getAllShareUrl();
-
         model.addAttribute("shareUrlList",shareUrlList);
 
-
+        /**
+         * 签到折线图
+         */
+        Line line=chartService.getRegisterLine(sysUser.getId() + "");
+        model.addAttribute("line",line);
 
         /**
          * 我的清单
          */
         List<MyList> myLists = new ArrayList<>();
         if (registerService.findTodayRegister(sysUser.getId() + "")) {
-//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/mm/dd");
             MyList myList = new MyList();
             myList.setListContent("今天还没签到[截止时间:" + DateUtil.format(new Date()) + "]");
             myList.setType("2");
