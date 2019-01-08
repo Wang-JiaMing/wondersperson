@@ -43,7 +43,7 @@ public class ShareUrlController {
         SysUser sysUser = (SysUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (shareUrlService.checkShare(shareUrl) < 1) {
             try {
-                shareUrl.setUrl("http://" + shareUrl.getUrl());
+                shareUrl.setUrl(shareUrl.getUrl());
                 shareUrl.setCreateUser(sysUser.getName());
                 shareUrlService.saveUrl(shareUrl);
                 message.setType(true);

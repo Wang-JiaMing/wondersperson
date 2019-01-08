@@ -13,6 +13,7 @@ import java.util.List;
  * @other:任务主表
  **/
 @Entity
+@Table(schema = "WD_PERSON")
 public class PlanInfo {
     @Id
     @GeneratedValue

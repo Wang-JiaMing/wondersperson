@@ -9,9 +9,5 @@
         <module name="wondersperson" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="UserManager" target="1.8" />
-      <module name="wondersperson" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

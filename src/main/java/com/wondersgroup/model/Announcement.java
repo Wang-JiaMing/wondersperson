@@ -12,6 +12,7 @@ import java.util.Date;
  * @other:新闻资讯
  **/
 @Entity
+@Table(schema = "WD_PERSON")
 public class Announcement {
     @Id
     @GeneratedValue

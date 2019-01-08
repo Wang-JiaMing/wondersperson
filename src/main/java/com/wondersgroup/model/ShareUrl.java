@@ -1,9 +1,6 @@
 package com.wondersgroup.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -15,6 +12,7 @@ import java.util.Date;
  * @other:
  **/
 @Entity
+@Table(schema = "WD_PERSON")
 public class ShareUrl {
     @Id
     @GeneratedValue

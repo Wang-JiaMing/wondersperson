@@ -3,6 +3,7 @@ package com.wondersgroup.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Date;
 
 /**
@@ -14,6 +15,7 @@ import java.util.Date;
  * @other:新闻资讯
  **/
 @Entity
+@Table(schema = "WD_PERSON")
 public class News {
     @Id
     @GeneratedValue

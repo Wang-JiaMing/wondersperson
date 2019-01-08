@@ -3,6 +3,7 @@ package com.wondersgroup.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @projectName:securityDemo
@@ -13,6 +14,7 @@ import javax.persistence.Id;
  * @other:
  **/
 @Entity
+@Table(schema = "WD_PERSON")
 public class SysRole {
     @Id
     @GeneratedValue

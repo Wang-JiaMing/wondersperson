@@ -20,6 +20,7 @@ import java.util.List;
  * @other:
  **/
 @Entity
+@Table(schema = "WD_PERSON")
 public class SysUser implements UserDetails{
     @Id
     @GeneratedValue

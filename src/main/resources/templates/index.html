@@ -28,9 +28,9 @@
 
         <div class="col-md-4" align="center">
             <div class="panel panel-warning" style="height: 400px">
-                <div class="panel-heading">技术分享</div>
+                <div class="panel-heading">网络分享</div>
                 <div class="panel-body pre-scrollable">
-                    <div class="list-group">
+                    <div class="list-group" style="cursor:pointer">
                         <a th:onclick="'javascript:toUrl(\''+${list.id}+'\',\''+${list.url}+'\')'"
                            class="list-group-item list-group-item-warning" th:each="list,listStat:${shareUrlList}">
                             <span th:text="${listStat.index+1}"></span>.
@@ -63,7 +63,7 @@
         <div class="row">
             <div class="col-md-12" align="center">
                 <div class="panel panel-default">
-                    <div class="panel-heading">添加技术分享</div>
+                    <div class="panel-heading">网络分享</div>
                     <div class="panel-body pre-scrollable">
                         <div class="row">
                             <div class="col-md-12" align="center">
@@ -78,23 +78,15 @@
                         <div class="row">
                             <div class="col-md-12" align="center">
                                 <div class="input-group">
-                                    <span class="input-group-addon">http:// <span style="color: red">*</span></span>
+                                    <span class="input-group-addon">URL<span style="color: red">*</span></span>
                                     <input type="text" id="url" class="form-control" name="url" value=""/>
                                 </div>
                             </div>
                         </div>
-                        <!--<div class="row">-->
-                        <!--<div class="col-md-12" align="center">-->
-                        <!--<div class="input-group">-->
-                        <!--<span class="input-group-addon" id="rg-name-span">推荐理由</span>-->
-                        <!--<input type="text" id="whyShare" class="form-control" name="whyShare" value=""/>-->
-                        <!--</div>-->
-                        <!--</div>-->
-                        <!--</div>-->
                     </div>
                     <div class="modal-footer">
                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                        <button type="button" th:onclick="'javascript:addUrl()'" id="rgBtn" class="btn btn-default">分
+                        <button type="button" th:onclick="'javascript:addUrl()'" id="rgBtn" class="btn btn-primary btn-xs">分
                             享
                         </button>
                     </div>
